@@ -4,36 +4,50 @@ This lab reviews the foundational concepts of algorithms and data structures tha
 
 **Instructions:** To complete this lab, you may work in groups, but you must write your solutions yourself. Choose two of the topics below that you need to review and complete the corresponding problems. Where relevant, you are given the answer and must provide the justification as your solution. Once you have completed the lab, push your changes to your forked repository.
 
-**Topics:** asymptotic analysis, data structures, empirical comparison of algorithms, pseudocode, greedy algorithms. 
+**Topics:** asymptotic analysis, data structures, empirical comparison of algorithms, pseudocode, greedy algorithms.
 
 ## Asymptotic Analysis
 
 1. Use the rules from lecture 07 to prove that $T(n) = 5 \log n + 7n$ is $\mathcal{O}(n)$.
 
+T(n) = 5log(n) + 7n
+
+Using the rule for dropping multiplicative constants:
+
+5log(n) is O(log(n))
+7n is O(n)
+
+Using the rule that summing is a max:
+
+5log(n) + 7n is O(max(log(n), n))
+
+Since n grows faster than log(n), n is the dominant term.
+
+Therefore, T(n) = O(n).
+
 2. True/False/Possibly: $T(n)$ is $\mathcal{O}(n^2)$?
 
 **Answer**: Yes
 
-**Justification**:
+**Justification**: Since T(n) = 5log(n) + 7n is O(n), and O(n) is also a subset of O(n^2), T(n) must also be O(n^2).
 
 3. True/False/Possibly: $T(n)$ is $\Omega(n \log n)$?
 
 **Answer**: No
 
-**Justification**:
+**Justification**: T(n) = 5log(n) + 7n grows proportionally to n. Since n grows more slowly than nlog(n), T(n) cannot be Omega(nlog(n)).
 
 4. For any algorithm, we can give a trivial lower bound. What is that lower bound?
 
 **Answer**: $\Omega(1)$
 
-**Justification**:
+**Justification**: Every algorithm requires at least some constant amount of time to begin execution and produce an output. Therefore, every algorithm has a trivial lower bound of Omega(1).
 
 5. Is there a corresponding trivial upper bound? Why or why not?
 
 **Answer**: No
 
-**Justification**:
-
+**Justification**: There is no trivial upper bound that applies to all algorithms because different algorithms can have vastly different running times. Some algorithms may run in constant time, while others may run in polynomial or exponential time.
 
 ## Data Structures
 
@@ -41,25 +55,25 @@ This lab reviews the foundational concepts of algorithms and data structures tha
 
 **Answer**: Stack
 
-**Justification**:
+**Justification**: A stack follows the Last In, First Out (LIFO) principle. As the robot moves through the maze, each intersection can be pushed onto the stack. When a dead end is reached, the robot can pop the most recently visited intersection from the stack and return to it.
 
 2. A server receives a massive influx of data packets from a streaming video application. To prevent the video from skipping or playing out of order on the user's end, the server must process and forward these packets in the exact sequence they were received.
 
 **Answer**: Queue
 
-**Justification**:
+**Justification**: A queue follows the First In, First Out (FIFO) principle. Since packets must be processed in the same order they arrive, the first packet received should also be the first packet forwarded. This makes a queue the appropriate data structure.
 
 3. An atmospheric monitoring system reads temperature data from 10,000 sequentially numbered sensors (IDs 0 through 9999). Throughout the day, the system needs to constantly update and read the current temperature of randomly selected sensors based on their ID number to build localized weather maps.
 
 **Answer**: Array
 
-**Justification**:
+**Justification**: An array allows direct access to elements using their index. Since each sensor has a unique ID between 0 and 9999, the system can quickly read or update a sensor's temperature by accessing the corresponding array position.
 
 4. You are building a lightweight syntax checker for a code editor. Its sole job is to scan a document and ensure that every opened parenthesis `(`, bracket `[`, and brace `{` is matched with its corresponding closing character in the correct nested order.
 
 **Answer**: Stack
 
-**Justification**:
+**Justification**: A stack is useful for matching nested symbols because the most recently opened parenthesis, bracket, or brace must be the first one closed. This follows the Last In, First Out behavior of a stack.
 
 ## Empirical Comparison of Algorithms
 
